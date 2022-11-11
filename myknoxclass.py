@@ -118,4 +118,36 @@ class Professor:
 
 
 class Student:
-    pass
+    def __init__(self, name, majordept, knoxID, email, academicrecord, advisor):
+        self.name = name
+        self.majordept = majordept
+        self.knoxID = knoxID
+        self.email = email
+        self.academicrecord = academicrecord
+        self.avdisor = advisor
+
+        if type(name) is not str:
+            raise TypeError("Student name must be a string")
+        if type(majordept) is not Major:
+            raise TypeError(
+                "Professor's dept/major must be an instance of Major class")
+        if type(email) is not str:
+            raise TypeError("Professor email must be a string")
+        if type(knoxID) is not int:
+            raise TypeError("Professor KnoxID must be a int")
+        if type(academicrecord) is not list[KnoxClass]:
+            raise TypeError(
+                "Student's classes must be a list of KnoxClass instances")
+        if type(advisor) is not Professor:
+            raise TypeError(
+                "Student's advisees  must be an instance of Professor")
+
+    def set_major(self, majorname):
+        self.majordept = majorname
+
+    def addclass(self, classname):
+        # not checking for duplication yet since classes can be repeated
+        self.academicrecord.append(classname)
+
+    def dropclass(self, classname):
+        self.academicrecord.remove(classname)
