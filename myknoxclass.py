@@ -57,3 +57,65 @@ class KnoxClass:
     def remove_faculty(self, facultyname):
         if type(facultyname) is str:
             self.faculty.remove(facultyname)
+
+
+class Professor:
+    def __init__(self, name, majordept, email, knoxid, classesteaching, advisees):
+        self.name = name
+        self.majordept = majordept
+        self.email = email
+        self.knoxid = knoxid
+        self.classesteaching = classesteaching
+        self.advisees = advisees
+
+        if type(name) is not str:
+            raise TypeError("Professor name must be a string")
+        if type(majordept) is not Major:
+            raise TypeError(
+                "Professor's dept/major must be an instance of Major class")
+        if type(email) is not str:
+            raise TypeError("Professor email must be a string")
+        if type(knoxid) is not int:
+            raise TypeError("Professor KnoxID must be a int")
+        if type(classesteaching) is not list[KnoxClass]:
+            raise TypeError(
+                "Professor's classes must be a list of KnoxClass instances")
+        if type(advisees) is not list[Student]:
+            raise TypeError(
+                "Professor's advisees list must be a list of Student class instances")
+
+    def addclass(self, classname):
+
+        if type(classname) is not KnoxClass:
+            raise TypeError("Class must be an instance of KnoxClass")
+
+        for i in self.classesteaching:
+            if i == classname:
+                raise FileExistsError(
+                    "The professior has already been assigned this class")
+        self.classesteaching.append(classname)
+
+    def removeclass(self, classname):
+
+        if type(classname) is not KnoxClass:
+            raise TypeError("Class must be an instance of KnoxClass")
+
+        self.classesteaching.remove(classname)
+
+    def addadvisee(self, studentname):  # implement student lookup within this
+        if type(studentname) is not str:
+            raise TypeError("Class must be of type string")
+        for i in self.advisees:
+            if i == studentname:
+                raise FileExistsError("This advisee has already been assigned")
+        self.advisees.append(studentname)
+
+    def removeadvisee(self, studentname):  # implement student lookup within this
+        if type(studentname) is not str:
+            raise TypeError("Class must be of type string")
+
+        self.advisees.remove(studentname)
+
+
+class Student:
+    pass
