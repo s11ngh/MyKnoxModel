@@ -8,5 +8,32 @@ import myknoxclass
 """
 
 
+majors = dict()
+studentdir = set()
+profdir = set()
+
+
 class KnoxDatabase:
-    pass
+
+    # Student Methods
+    def newmajor(newmajor):
+        if newmajor is not myknoxclass.Major:
+            raise TypeError("Arguement must be an instance of class Major")
+        majors[newmajor.major] = newmajor.requiredclasses
+
+    def requirements(self, majorname):
+        return majors[majorname]
+
+    def classinmajorcheck(self, classname, majorname) -> bool:
+        if majorname not in majors:
+            raise FileNotFoundError(
+                "Major does not exist. Check your spelling or use newmajor()")
+        if type(classname) is not str:
+            raise TypeError("class name must be a str")
+
+        for i in majors[majorname].requiredclasses:
+            if i == classname:
+                return True
+        return False
+
+    # KnoxClass methods
