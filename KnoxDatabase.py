@@ -8,9 +8,9 @@ import myknoxclass
 """
 
 
-majors = dict()
-studentdir = set()
-profdir = set()
+majors = dict()  # <Name of Major(Str), MajorReqList[KnoxClass]>
+studentdir = dict()
+profdir = dict()
 
 
 class KnoxDatabase:
@@ -28,8 +28,8 @@ class KnoxDatabase:
         if majorname not in majors:
             raise FileNotFoundError(
                 "Major does not exist. Check your spelling or use newmajor()")
-        if type(classname) is not str:
-            raise TypeError("class name must be a str")
+        if type(classname) is not myknoxclass.KnoxClass:
+            raise TypeError("class name must be an instance of KnoxClass")
 
         for i in majors[majorname].requiredclasses:
             if i == classname:
@@ -37,3 +37,4 @@ class KnoxDatabase:
         return False
 
     # KnoxClass methods
+    def periodchange(self, majorname, )
