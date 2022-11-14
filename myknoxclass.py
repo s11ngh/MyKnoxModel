@@ -5,10 +5,12 @@ class Major:
 
         if type(major) != str:
             raise TypeError("major name must be of String type")
-        if type(requiredclasses) is not set:
+        if type(requiredclasses) is not list[KnoxClass]:
             raise TypeError(
-                "requiredclasses must be an instance of the set class")
+                "requiredclasses must be an instance of the KnoxClass class")
 
+
+"""
     def addrequirements(self, KnoxClass):
         if KnoxClass in self.reqiredclasses:
             raise FileExistsError(
@@ -22,10 +24,11 @@ class Major:
 
     def classinmajorcheck(self, KnoxClass) -> bool:
         return (KnoxClass in self.reqiredclasses)
+"""
 
 
 class KnoxClass:
-    def __init__(self, classname, majordept, period, faculty) -> None:
+    def __init__(self, classname, majordept, period, faculty):
         self.classname = classname
         self.majordept = majordept
         self.period = period
@@ -41,9 +44,11 @@ class KnoxClass:
                 raise ValueError("Enter a period in range 0-8 (inclusive)")
         else:
             raise TypeError("period must be of type int")
-        if type(faculty) is not list:
+        if type(faculty) is not list[Professor]:
             raise TypeError("period must be of type list")
 
+
+"""
     def periodchange(self, newperiod):
         if type(newperiod) is int and newperiod < 9 and newperiod > -1:
             self.period = newperiod
@@ -57,6 +62,7 @@ class KnoxClass:
     def remove_faculty(self, facultyname):
         if type(facultyname) is str:
             self.faculty.remove(facultyname)
+"""
 
 
 class Professor:
