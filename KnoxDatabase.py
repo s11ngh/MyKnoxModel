@@ -8,7 +8,8 @@ import myknoxclass
 """
 
 
-majors = dict()  # <Name of Major(Str), MajorReqList[KnoxClass]>
+majors = dict()  # <Name of Major(Str), MajorReqList[KnoxClass]>]
+majors['Undecided': []]
 studentdir = dict()
 profdir = dict()
 class_list = []
