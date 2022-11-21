@@ -32,22 +32,8 @@ class KnoxDatabase:
             raise TypeError("Class must be an instance of class KnoxClass")
         student.academicrecord.append(classname)
 
-    def requirements(self, majorname):
-        return majors[majorname]
-
-    def classinmajorcheck(self, classname, majorname) -> bool:
-        if majorname not in majors:
-            raise FileNotFoundError(
-                "Major does not exist. Check your spelling or use newmajor()")
-        if type(classname) is not myknoxclass.KnoxClass:
-            raise TypeError("class name must be an instance of KnoxClass")
-
-        for i in majors[majorname].requiredclasses:
-            if i == classname:
-                return True
-        return False
-
     # KnoxClass methods
+
     def newclassoffering(self, student, classname):
         # not checking for duplication yet since classes can be repeated
         if type(student) is not myknoxclass.Student:
@@ -133,3 +119,21 @@ class KnoxDatabase:
         if type(rmmaj) is not myknoxclass.Major:
             raise TypeError("rmmaj must be an instance of class Major")
         del majors[rmmaj.major]
+
+    def requirements(self, majorname):
+        return majors[majorname]
+
+    def classinmajorcheck(self, classname, majorname) -> bool:
+        if majorname not in majors:
+            raise FileNotFoundError(
+                "Major does not exist. Check your spelling or use newmajor()")
+        if type(classname) is not myknoxclass.KnoxClass:
+            raise TypeError("class name must be an instance of KnoxClass")
+
+        for i in majors[majorname].requiredclasses:
+            if i == classname:
+                return True
+        return False
+
+
+hi = KnoxClass(classname)
