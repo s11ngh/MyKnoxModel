@@ -9,6 +9,9 @@ class Major:
             raise TypeError(
                 "requiredclasses must be an instance of the KnoxClass class")
 
+    def __str__(self):
+        return 'major='+self.major+' required classes='+(self.requiredclasses)
+
 
 """
     def addrequirements(self, KnoxClass):
@@ -46,6 +49,9 @@ class KnoxClass:
             raise TypeError("period must be of type int")
         if type(faculty) is not list[Professor]:
             raise TypeError("period must be of type list")
+
+    def __str__(self):
+        return 'class='+self.classname+' period='+str(self.period) + '\n faculty='+self.faculty + 'majorddept = ' + self.faculty
 
 
 """
@@ -90,6 +96,11 @@ class Professor:
             raise TypeError(
                 "Professor's advisees list must be a list of Student class instances")
 
+    def __str__(self):
+        return 'name='+self.name+' department='+self.majordept + 'knoxid =' + self.knoxid + '\n email = ' + self.email + 'advisees=' + self.advisees
+
+
+"""
     def addclass(self, classname):
 
         if type(classname) is not KnoxClass:
@@ -121,16 +132,17 @@ class Professor:
             raise TypeError("Class must be of type string")
 
         self.advisees.remove(studentname)
+"""
 
 
 class Student:
     def __init__(self, name, majordept, knoxID, email, academicrecord, advisor):
         self.name = name
-        self.majordept = majordept
+        self.majordept = 'Undecided'
         self.knoxID = knoxID
         self.email = email
         self.academicrecord = academicrecord
-        self.avdisor = advisor
+        self.advisor = advisor
 
         if type(name) is not str:
             raise TypeError("Student name must be a string")
@@ -148,12 +160,5 @@ class Student:
             raise TypeError(
                 "Student's advisees  must be an instance of Professor")
 
-    def set_major(self, majorname):
-        self.majordept = majorname
-
-    def addclass(self, classname):
-        # not checking for duplication yet since classes can be repeated
-        self.academicrecord.append(classname)
-
-    def dropclass(self, classname):
-        self.academicrecord.remove(classname)
+    def __str__(self):
+        return 'name='+self.name+' major='+self.majordept + 'knoxID= ' + self.knoxID + '\n classes taken = ' + self.academicrecord

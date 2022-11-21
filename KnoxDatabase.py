@@ -17,10 +17,19 @@ class_list = []
 class KnoxDatabase:
 
     # Student Methods
-    def newmajor(newmajor):
-        if type(newmajor) is not myknoxclass.Major:
-            raise TypeError("Arguement must be an instance of class Major")
-        majors[newmajor.major] = newmajor.requiredclasses
+    def dropclass(self, student, classname):
+        if type(student) is not myknoxclass.Student:
+            raise TypeError("Class must be an instance of class Student")
+        if type(classname) is not myknoxclass.KnoxClass:
+            raise TypeError("Class must be an instance of class KnoxClass")
+        student.academicrecord.remove(classname)
+
+    def takeclass(self, student, classname):
+        if type(student) is not myknoxclass.Student:
+            raise TypeError("Class must be an instance of class Student")
+        if type(classname) is not myknoxclass.KnoxClass:
+            raise TypeError("Class must be an instance of class KnoxClass")
+        student.academicrecord.append(classname)
 
     def requirements(self, majorname):
         return majors[majorname]
@@ -38,6 +47,16 @@ class KnoxDatabase:
         return False
 
     # KnoxClass methods
+    def newclassoffering(self, student, classname):
+        # not checking for duplication yet since classes can be repeated
+        if type(student) is not myknoxclass.Student:
+            raise TypeError("Class must be an instance of class Student")
+        if type(student) is not myknoxclass.KnoxClass:
+            raise TypeError("Class must be an instance of class KnoxClass")
+
+        if classname in class_list and studentdir.has_key[student]:
+            student.academicrecord.append(classname)
+
     def periodchange(self, majorname, classname, newperiod):
         if majorname not in majors:
             raise FileNotFoundError(
@@ -75,11 +94,11 @@ class KnoxDatabase:
         if type(classname) is not myknoxclass.KnoxClass:
             raise TypeError("Class must be an instance of KnoxClass")
 
-        for i in profname.classesteaching:
-            if i == classname:
-                raise FileExistsError(
-                    "The professior has already been assigned this class")
-        self.classesteaching.append(classname)
+        for i in profdir:
+            self.classesteaching.append(classname)
+        else:
+            raise FileExistsError(
+                "Professor does not exist in dir")
 
     def removeclass(self, prof, classname):
         if type(prof) is not myknoxclass.Professor:
