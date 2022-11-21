@@ -13,23 +13,6 @@ class Major:
         return 'major='+self.major+' required classes='+(self.requiredclasses)
 
 
-"""
-    def addrequirements(self, KnoxClass):
-        if KnoxClass in self.reqiredclasses:
-            raise FileExistsError(
-                "This class is already a requirement for the major")
-            # Sets automatically handle duplication but this error will help prevent multiple attempts
-        else:
-            self.requiredclasses.add(KnoxClass)
-
-    def requirements(self):
-        return self.reqiredclasses
-
-    def classinmajorcheck(self, KnoxClass) -> bool:
-        return (KnoxClass in self.reqiredclasses)
-"""
-
-
 class KnoxClass:
     def __init__(self, classname, majordept, period, faculty):
         self.classname = classname
@@ -52,23 +35,6 @@ class KnoxClass:
 
     def __str__(self):
         return 'class='+self.classname+' period='+str(self.period) + '\n faculty='+self.faculty + 'majorddept = ' + self.faculty
-
-
-"""
-    def periodchange(self, newperiod):
-        if type(newperiod) is int and newperiod < 9 and newperiod > -1:
-            self.period = newperiod
-        else:
-            raise ValueError("Enter a period within 0-8")
-
-    def add_faculty(self, facultyname):
-        if type(facultyname) is str:
-            self.faculty.append(facultyname)
-
-    def remove_faculty(self, facultyname):
-        if type(facultyname) is str:
-            self.faculty.remove(facultyname)
-"""
 
 
 class Professor:
@@ -98,41 +64,6 @@ class Professor:
 
     def __str__(self):
         return 'name='+self.name+' department='+self.majordept + 'knoxid =' + self.knoxid + '\n email = ' + self.email + 'advisees=' + self.advisees
-
-
-"""
-    def addclass(self, classname):
-
-        if type(classname) is not KnoxClass:
-            raise TypeError("Class must be an instance of KnoxClass")
-
-        for i in self.classesteaching:
-            if i == classname:
-                raise FileExistsError(
-                    "The professior has already been assigned this class")
-        self.classesteaching.append(classname)
-
-    def removeclass(self, classname):
-
-        if type(classname) is not KnoxClass:
-            raise TypeError("Class must be an instance of KnoxClass")
-
-        self.classesteaching.remove(classname)
-
-    def addadvisee(self, studentname):  # implement student lookup within this
-        if type(studentname) is not str:
-            raise TypeError("Class must be of type string")
-        for i in self.advisees:
-            if i == studentname:
-                raise FileExistsError("This advisee has already been assigned")
-        self.advisees.append(studentname)
-
-    def removeadvisee(self, studentname):  # implement student lookup within this
-        if type(studentname) is not str:
-            raise TypeError("Class must be of type string")
-
-        self.advisees.remove(studentname)
-"""
 
 
 class Student:

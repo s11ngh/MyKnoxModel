@@ -1,3 +1,9 @@
+"""Creates a PDF report for given student
+    Library: ReportLab
+    Use: studentreport method defined below
+"""
+
+
 from reportlab.pdfgen.canvas import Canvas
 from myknoxclass import Student
 import KnoxDatabase
